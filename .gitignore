@@ -3,3 +3,5 @@
 */logs/!index.html
 */cache/*
 */cache/!index.html
+/.htaccess~
+/_trashsys/database/DB_driver.php~

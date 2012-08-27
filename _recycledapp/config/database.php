@@ -52,6 +52,7 @@ $db['default']['password'] = 'suministros';
 $db['default']['database'] = 'cadena';
 $db['default']['dbdriver'] = 'postgre';
 $db['default']['doctrine_driver'] = 'pdo_pgsql';
+$db['default']['port'] = 5432;
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

@@ -1,7 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-include ('constant.php');
-
 class Reservas extends TD_Controller {
 
         function __construct()
@@ -13,25 +11,13 @@ class Reservas extends TD_Controller {
 		$this->load->helper('url');
 		/* ------------------ */
                 $this->em = $this->doctrine->em; //Instantiate a Doctrine Entity Manager
-                $this->qb = $this->em->createQueryBuilder();
-                
-                
+                $this->qb = $this->em->createQueryBuilder();                
         }
         
         public function index()
         {
-                var_dump($this->alternative_url);
-                var_dump($this->device_storage->retrieveDeviceInfo());
-                var_dump($this->device_storage->retrieveDevicePreference());
-
-                $this->load->helper('url');
-                $this->load->library('user_agent');
-                echo 'El referer  '.anchor($this->agent->referrer());
-
-                echo 'Alternativo  '.anchor($this->alternative_url);
-                echo anchor ($this->session->flashdata('previous_url'));
-                die;
-            /*$data['title'] = '.::TuDescuentón.com::..';
+         
+            $data['title'] = '.::TuDescuentón.com::..';
             $data['css_files'] = array('css/index.min.css', 
                                 'css/header.css', 
                                 'css/nav_tdmarcas.css', 
@@ -61,16 +47,11 @@ class Reservas extends TD_Controller {
                 $data['home_list'][$i]['times'] = $this->_get_time_current($data['home_list'][$i]['team_id'], $today_date);
                 $data['home_list'][$i]['image'] = $this->_get_team_image($data['home_list'][$i]['team_id'], 1);
             }
-            
-//            echo '<pre>';
-//            print_r($data); 
-//            echo '</pre>';die;
-            
+                        
             $this->load->view('header', $data);
             $this->load->view('header_td');
             $this->load->view('main_content');
-            $this->load->view('footer');
-             */
+            $this->load->view('footer');            
         }
         
         public function _home_list($today_time, $today_date)

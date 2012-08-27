@@ -42,11 +42,6 @@ class TD_Controller extends MX_Controller {
         $this->load->database();
         $this->em = $this->doctrine->em;
         $this->qb = $this->em->createQueryBuilder();
-
-	echo 'HEHEHEHE NO PUEDES CREERLO';
-
-	var_dump($this->db);
-	die;
     }
 }
 
