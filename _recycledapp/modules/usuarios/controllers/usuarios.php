@@ -1,18 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Reservas extends TD_Controller {
-
-        function __construct()
-        {
-                parent::__construct();
-               
-                /* Standard Libraries */
-		$this->load->database();
-		$this->load->helper('url');
-		/* ------------------ */
-                $this->em = $this->doctrine->em; //Instantiate a Doctrine Entity Manager
-                $this->qb = $this->em->createQueryBuilder();                
-        }
+class Usuarios extends TD_Controller {
         
         public function index()
         {
