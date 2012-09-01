@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace models;
 
 /**
@@ -32,7 +30,7 @@ class AdRole
     /**
      * @var decimal $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=false)
+     * @Column(name="createdby", type="decimal", nullable=true)
      */
     private $createdby;
 
@@ -53,7 +51,7 @@ class AdRole
     /**
      * @var decimal $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=false)
+     * @Column(name="updatedby", type="decimal", nullable=true)
      */
     private $updatedby;
 

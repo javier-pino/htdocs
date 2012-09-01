@@ -1,5 +1,4 @@
-<?php
-
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
 namespace models;
@@ -32,7 +31,7 @@ class AdUser
     /**
      * @var decimal $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=false)
+     * @Column(name="createdby", type="decimal", nullable=true)
      */
     private $createdby;
 
@@ -46,7 +45,7 @@ class AdUser
     /**
      * @var decimal $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=false)
+     * @Column(name="updatedby", type="decimal", nullable=true)
      */
     private $updatedby;
 
@@ -88,51 +87,44 @@ class AdUser
     /**
      * @var string $email
      *
-     * @Column(name="email", type="string", length=60, nullable=true)
+     * @Column(name="email", type="string", length=60, nullable=false)
      */
     private $email;
 
     /**
      * @var string $emailverify
      *
-     * @Column(name="emailverify", type="string", length=40, nullable=false)
+     * @Column(name="emailverify", type="string", length=40, nullable=true)
      */
     private $emailverify;
 
     /**
      * @var string $phone
      *
-     * @Column(name="phone", type="string", length=40, nullable=false)
+     * @Column(name="phone", type="string", length=40, nullable=true)
      */
     private $phone;
 
     /**
      * @var string $phone2
      *
-     * @Column(name="phone2", type="string", length=40, nullable=false)
+     * @Column(name="phone2", type="string", length=40, nullable=true)
      */
     private $phone2;
 
     /**
      * @var string $emailuser
      *
-     * @Column(name="emailuser", type="string", length=20, nullable=false)
+     * @Column(name="emailuser", type="string", length=20, nullable=true)
      */
     private $emailuser;
 
     /**
      * @var string $emailuserpw
      *
-     * @Column(name="emailuserpw", type="string", length=20, nullable=false)
+     * @Column(name="emailuserpw", type="string", length=20, nullable=true)
      */
     private $emailuserpw;
-
-    /**
-     * @var string $fax
-     *
-     * @Column(name="fax", type="string", length=40, nullable=false)
-     */
-    private $fax;
 
     /**
      * @var date $birthday
@@ -502,26 +494,6 @@ class AdUser
     public function getEmailuserpw()
     {
         return $this->emailuserpw;
-    }
-
-    /**
-     * Set fax
-     *
-     * @param string $fax
-     */
-    public function setFax($fax)
-    {
-        $this->fax = $fax;
-    }
-
-    /**
-     * Get fax
-     *
-     * @return string 
-     */
-    public function getFax()
-    {
-        return $this->fax;
     }
 
     /**

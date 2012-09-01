@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace models;
 
 /**
@@ -39,7 +37,7 @@ class AdClient
     /**
      * @var decimal $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=false)
+     * @Column(name="createdby", type="decimal", nullable=true)
      */
     private $createdby;
 
@@ -53,7 +51,7 @@ class AdClient
     /**
      * @var decimal $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=false)
+     * @Column(name="updatedby", type="decimal", nullable=true)
      */
     private $updatedby;
 
@@ -81,7 +79,7 @@ class AdClient
     /**
      * @var string $smtphost
      *
-     * @Column(name="smtphost", type="string", length=60, nullable=false)
+     * @Column(name="smtphost", type="string", length=60, nullable=true)
      */
     private $smtphost;
 
@@ -95,35 +93,35 @@ class AdClient
     /**
      * @var string $requestuser
      *
-     * @Column(name="requestuser", type="string", length=20, nullable=false)
+     * @Column(name="requestuser", type="string", length=20, nullable=true)
      */
     private $requestuser;
 
     /**
      * @var string $requestuserpw
      *
-     * @Column(name="requestuserpw", type="string", length=20, nullable=false)
+     * @Column(name="requestuserpw", type="string", length=20, nullable=true)
      */
     private $requestuserpw;
 
     /**
      * @var string $requestfolder
      *
-     * @Column(name="requestfolder", type="string", length=20, nullable=false)
+     * @Column(name="requestfolder", type="string", length=20, nullable=true)
      */
     private $requestfolder;
 
     /**
      * @var string $webdir
      *
-     * @Column(name="webdir", type="string", length=60, nullable=false)
+     * @Column(name="webdir", type="string", length=60, nullable=true)
      */
     private $webdir;
 
     /**
      * @var string $documentdir
      *
-     * @Column(name="documentdir", type="string", length=60, nullable=false)
+     * @Column(name="documentdir", type="string", length=60, nullable=true)
      */
     private $documentdir;
 

@@ -1,7 +1,6 @@
 <?php
 
 
-
 namespace models;
 
 /**
@@ -39,7 +38,7 @@ class AdClientinfo
     /**
      * @var decimal $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=false)
+     * @Column(name="createdby", type="decimal", nullable=true)
      */
     private $createdby;
 
@@ -53,7 +52,7 @@ class AdClientinfo
     /**
      * @var decimal $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=false)
+     * @Column(name="updatedby", type="decimal", nullable=true)
      */
     private $updatedby;
 

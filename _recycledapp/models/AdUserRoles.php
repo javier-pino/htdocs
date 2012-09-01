@@ -2,7 +2,7 @@
 
 
 
-namespace models;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * AdUserRoles
