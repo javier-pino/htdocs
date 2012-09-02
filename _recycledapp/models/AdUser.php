@@ -1,5 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+<?php
 
 namespace models;
 
@@ -12,14 +11,28 @@ namespace models;
 class AdUser
 {
     /**
-     * @var decimal $adUserId
+     * @var integer $adUserId
      *
-     * @Column(name="ad_user_id", type="decimal", nullable=false)
+     * @Column(name="ad_user_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="SEQUENCE")
      * @SequenceGenerator(sequenceName="ad_user_ad_user_id_seq", allocationSize="1", initialValue="1")
      */
     private $adUserId;
+
+    /**
+     * @var integer $adClientId
+     *
+     * @Column(name="ad_client_id", type="integer", nullable=false)
+     */
+    private $adClientId;
+
+    /**
+     * @var integer $adOrgId
+     *
+     * @Column(name="ad_org_id", type="integer", nullable=false)
+     */
+    private $adOrgId;
 
     /**
      * @var date $created
@@ -29,9 +42,9 @@ class AdUser
     private $created;
 
     /**
-     * @var decimal $createdby
+     * @var integer $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=true)
+     * @Column(name="createdby", type="integer", nullable=true)
      */
     private $createdby;
 
@@ -43,9 +56,9 @@ class AdUser
     private $updated;
 
     /**
-     * @var decimal $updatedby
+     * @var integer $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=true)
+     * @Column(name="updatedby", type="integer", nullable=true)
      */
     private $updatedby;
 
@@ -134,6 +147,13 @@ class AdUser
     private $birthday;
 
     /**
+     * @var integer $supervisorId
+     *
+     * @Column(name="supervisor_id", type="integer", nullable=true)
+     */
+    private $supervisorId;
+
+    /**
      * @var date $lastcontact
      *
      * @Column(name="lastcontact", type="date", nullable=false)
@@ -154,46 +174,56 @@ class AdUser
      */
     private $processing;
 
-    /**
-     * @var AdClient
-     *
-     * @ManyToOne(targetEntity="AdClient")
-     * @JoinColumns({
-     *   @JoinColumn(name="ad_client_id", referencedColumnName="ad_client_id")
-     * })
-     */
-    private $adClient;
-
-    /**
-     * @var AdOrg
-     *
-     * @ManyToOne(targetEntity="AdOrg")
-     * @JoinColumns({
-     *   @JoinColumn(name="ad_org_id", referencedColumnName="ad_org_id")
-     * })
-     */
-    private $adOrg;
-
-    /**
-     * @var AdUser
-     *
-     * @ManyToOne(targetEntity="AdUser")
-     * @JoinColumns({
-     *   @JoinColumn(name="supervisor_id", referencedColumnName="ad_user_id")
-     * })
-     */
-    private $supervisor;
-
 
 
     /**
      * Get adUserId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdUserId()
     {
         return $this->adUserId;
+    }
+
+    /**
+     * Set adClientId
+     *
+     * @param integer $adClientId
+     */
+    public function setAdClientId($adClientId)
+    {
+        $this->adClientId = $adClientId;
+    }
+
+    /**
+     * Get adClientId
+     *
+     * @return integer 
+     */
+    public function getAdClientId()
+    {
+        return $this->adClientId;
+    }
+
+    /**
+     * Set adOrgId
+     *
+     * @param integer $adOrgId
+     */
+    public function setAdOrgId($adOrgId)
+    {
+        $this->adOrgId = $adOrgId;
+    }
+
+    /**
+     * Get adOrgId
+     *
+     * @return integer 
+     */
+    public function getAdOrgId()
+    {
+        return $this->adOrgId;
     }
 
     /**
@@ -219,7 +249,7 @@ class AdUser
     /**
      * Set createdby
      *
-     * @param decimal $createdby
+     * @param integer $createdby
      */
     public function setCreatedby($createdby)
     {
@@ -229,7 +259,7 @@ class AdUser
     /**
      * Get createdby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getCreatedby()
     {
@@ -259,7 +289,7 @@ class AdUser
     /**
      * Set updatedby
      *
-     * @param decimal $updatedby
+     * @param integer $updatedby
      */
     public function setUpdatedby($updatedby)
     {
@@ -269,7 +299,7 @@ class AdUser
     /**
      * Get updatedby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getUpdatedby()
     {
@@ -517,6 +547,26 @@ class AdUser
     }
 
     /**
+     * Set supervisorId
+     *
+     * @param integer $supervisorId
+     */
+    public function setSupervisorId($supervisorId)
+    {
+        $this->supervisorId = $supervisorId;
+    }
+
+    /**
+     * Get supervisorId
+     *
+     * @return integer 
+     */
+    public function getSupervisorId()
+    {
+        return $this->supervisorId;
+    }
+
+    /**
      * Set lastcontact
      *
      * @param date $lastcontact
@@ -574,65 +624,5 @@ class AdUser
     public function getProcessing()
     {
         return $this->processing;
-    }
-
-    /**
-     * Set adClient
-     *
-     * @param AdClient $adClient
-     */
-    public function setAdClient(\AdClient $adClient)
-    {
-        $this->adClient = $adClient;
-    }
-
-    /**
-     * Get adClient
-     *
-     * @return AdClient 
-     */
-    public function getAdClient()
-    {
-        return $this->adClient;
-    }
-
-    /**
-     * Set adOrg
-     *
-     * @param AdOrg $adOrg
-     */
-    public function setAdOrg(\AdOrg $adOrg)
-    {
-        $this->adOrg = $adOrg;
-    }
-
-    /**
-     * Get adOrg
-     *
-     * @return AdOrg 
-     */
-    public function getAdOrg()
-    {
-        return $this->adOrg;
-    }
-
-    /**
-     * Set supervisor
-     *
-     * @param AdUser $supervisor
-     */
-    public function setSupervisor(\AdUser $supervisor)
-    {
-        $this->supervisor = $supervisor;
-    }
-
-    /**
-     * Get supervisor
-     *
-     * @return AdUser 
-     */
-    public function getSupervisor()
-    {
-        return $this->supervisor;
     }
 }

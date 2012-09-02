@@ -11,9 +11,9 @@ namespace models;
 class AdSession
 {
     /**
-     * @var decimal $adSessionId
+     * @var integer $adSessionId
      *
-     * @Column(name="ad_session_id", type="decimal", nullable=false)
+     * @Column(name="ad_session_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="SEQUENCE")
      * @SequenceGenerator(sequenceName="ad_session_ad_session_id_seq", allocationSize="1", initialValue="1")
@@ -21,16 +21,16 @@ class AdSession
     private $adSessionId;
 
     /**
-     * @var decimal $adClientId
+     * @var integer $adClientId
      *
-     * @Column(name="ad_client_id", type="decimal", nullable=false)
+     * @Column(name="ad_client_id", type="integer", nullable=false)
      */
     private $adClientId;
 
     /**
-     * @var decimal $adOrgId
+     * @var integer $adOrgId
      *
-     * @Column(name="ad_org_id", type="decimal", nullable=false)
+     * @Column(name="ad_org_id", type="integer", nullable=false)
      */
     private $adOrgId;
 
@@ -42,9 +42,9 @@ class AdSession
     private $created;
 
     /**
-     * @var decimal $createdby
+     * @var integer $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=false)
+     * @Column(name="createdby", type="integer", nullable=false)
      */
     private $createdby;
 
@@ -56,9 +56,9 @@ class AdSession
     private $updated;
 
     /**
-     * @var decimal $updatedby
+     * @var integer $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=false)
+     * @Column(name="updatedby", type="integer", nullable=false)
      */
     private $updatedby;
 
@@ -88,7 +88,7 @@ class AdSession
     /**
      * Get adSessionId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdSessionId()
     {
@@ -98,7 +98,7 @@ class AdSession
     /**
      * Set adClientId
      *
-     * @param decimal $adClientId
+     * @param integer $adClientId
      */
     public function setAdClientId($adClientId)
     {
@@ -108,7 +108,7 @@ class AdSession
     /**
      * Get adClientId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdClientId()
     {
@@ -118,7 +118,7 @@ class AdSession
     /**
      * Set adOrgId
      *
-     * @param decimal $adOrgId
+     * @param integer $adOrgId
      */
     public function setAdOrgId($adOrgId)
     {
@@ -128,7 +128,7 @@ class AdSession
     /**
      * Get adOrgId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdOrgId()
     {
@@ -158,7 +158,7 @@ class AdSession
     /**
      * Set createdby
      *
-     * @param decimal $createdby
+     * @param integer $createdby
      */
     public function setCreatedby($createdby)
     {
@@ -168,7 +168,7 @@ class AdSession
     /**
      * Get createdby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getCreatedby()
     {
@@ -198,7 +198,7 @@ class AdSession
     /**
      * Set updatedby
      *
-     * @param decimal $updatedby
+     * @param integer $updatedby
      */
     public function setUpdatedby($updatedby)
     {
@@ -208,7 +208,7 @@ class AdSession
     /**
      * Get updatedby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getUpdatedby()
     {

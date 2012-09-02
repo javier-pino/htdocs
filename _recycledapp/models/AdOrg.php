@@ -11,9 +11,9 @@ namespace models;
 class AdOrg
 {
     /**
-     * @var decimal $adOrgId
+     * @var integer $adOrgId
      *
-     * @Column(name="ad_org_id", type="decimal", nullable=false)
+     * @Column(name="ad_org_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="SEQUENCE")
      * @SequenceGenerator(sequenceName="ad_org_ad_org_id_seq", allocationSize="1", initialValue="1")
@@ -21,9 +21,9 @@ class AdOrg
     private $adOrgId;
 
     /**
-     * @var decimal $adClientId
+     * @var integer $adClientId
      *
-     * @Column(name="ad_client_id", type="decimal", nullable=true)
+     * @Column(name="ad_client_id", type="integer", nullable=true)
      */
     private $adClientId;
 
@@ -35,9 +35,9 @@ class AdOrg
     private $created;
 
     /**
-     * @var decimal $createdby
+     * @var integer $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=true)
+     * @Column(name="createdby", type="integer", nullable=true)
      */
     private $createdby;
 
@@ -49,9 +49,9 @@ class AdOrg
     private $updated;
 
     /**
-     * @var decimal $updatedby
+     * @var integer $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=true)
+     * @Column(name="updatedby", type="integer", nullable=true)
      */
     private $updatedby;
 
@@ -81,7 +81,7 @@ class AdOrg
     /**
      * Get adOrgId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdOrgId()
     {
@@ -91,7 +91,7 @@ class AdOrg
     /**
      * Set adClientId
      *
-     * @param decimal $adClientId
+     * @param integer $adClientId
      */
     public function setAdClientId($adClientId)
     {
@@ -101,7 +101,7 @@ class AdOrg
     /**
      * Get adClientId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdClientId()
     {
@@ -131,7 +131,7 @@ class AdOrg
     /**
      * Set createdby
      *
-     * @param decimal $createdby
+     * @param integer $createdby
      */
     public function setCreatedby($createdby)
     {
@@ -141,7 +141,7 @@ class AdOrg
     /**
      * Get createdby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getCreatedby()
     {
@@ -171,7 +171,7 @@ class AdOrg
     /**
      * Set updatedby
      *
-     * @param decimal $updatedby
+     * @param integer $updatedby
      */
     public function setUpdatedby($updatedby)
     {
@@ -181,7 +181,7 @@ class AdOrg
     /**
      * Get updatedby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getUpdatedby()
     {

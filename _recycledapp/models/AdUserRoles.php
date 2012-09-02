@@ -1,8 +1,6 @@
 <?php
 
-
-
-use Doctrine\ORM\Mapping as ORM;
+namespace models;
 
 /**
  * AdUserRoles
@@ -13,22 +11,36 @@ use Doctrine\ORM\Mapping as ORM;
 class AdUserRoles
 {
     /**
-     * @var decimal $adRoleId
+     * @var integer $adRoleId
      *
-     * @Column(name="ad_role_id", type="decimal", nullable=false)
+     * @Column(name="ad_role_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="NONE")
      */
     private $adRoleId;
 
     /**
-     * @var decimal $adUserId
+     * @var integer $adUserId
      *
-     * @Column(name="ad_user_id", type="decimal", nullable=false)
+     * @Column(name="ad_user_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="NONE")
      */
     private $adUserId;
+
+    /**
+     * @var integer $adClientId
+     *
+     * @Column(name="ad_client_id", type="integer", nullable=false)
+     */
+    private $adClientId;
+
+    /**
+     * @var integer $adOrgId
+     *
+     * @Column(name="ad_org_id", type="integer", nullable=false)
+     */
+    private $adOrgId;
 
     /**
      * @var date $created
@@ -38,9 +50,9 @@ class AdUserRoles
     private $created;
 
     /**
-     * @var decimal $createdby
+     * @var integer $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=false)
+     * @Column(name="createdby", type="integer", nullable=false)
      */
     private $createdby;
 
@@ -52,58 +64,18 @@ class AdUserRoles
     private $updated;
 
     /**
-     * @var decimal $updatedby
+     * @var integer $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=false)
+     * @Column(name="updatedby", type="integer", nullable=false)
      */
     private $updatedby;
-
-    /**
-     * @var AdClient
-     *
-     * @ManyToOne(targetEntity="AdClient")
-     * @JoinColumns({
-     *   @JoinColumn(name="ad_client_id", referencedColumnName="ad_client_id")
-     * })
-     */
-    private $adClient;
-
-    /**
-     * @var AdOrg
-     *
-     * @ManyToOne(targetEntity="AdOrg")
-     * @JoinColumns({
-     *   @JoinColumn(name="ad_org_id", referencedColumnName="ad_org_id")
-     * })
-     */
-    private $adOrg;
-
-    /**
-     * @var AdRole
-     *
-     * @ManyToOne(targetEntity="AdRole")
-     * @JoinColumns({
-     *   @JoinColumn(name="ad_role_id", referencedColumnName="ad_role_id")
-     * })
-     */
-    private $adRole;
-
-    /**
-     * @var AdUser
-     *
-     * @ManyToOne(targetEntity="AdUser")
-     * @JoinColumns({
-     *   @JoinColumn(name="ad_user_id", referencedColumnName="ad_user_id")
-     * })
-     */
-    private $adUser;
 
 
 
     /**
      * Set adRoleId
      *
-     * @param decimal $adRoleId
+     * @param integer $adRoleId
      */
     public function setAdRoleId($adRoleId)
     {
@@ -113,7 +85,7 @@ class AdUserRoles
     /**
      * Get adRoleId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdRoleId()
     {
@@ -123,7 +95,7 @@ class AdUserRoles
     /**
      * Set adUserId
      *
-     * @param decimal $adUserId
+     * @param integer $adUserId
      */
     public function setAdUserId($adUserId)
     {
@@ -133,11 +105,51 @@ class AdUserRoles
     /**
      * Get adUserId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdUserId()
     {
         return $this->adUserId;
+    }
+
+    /**
+     * Set adClientId
+     *
+     * @param integer $adClientId
+     */
+    public function setAdClientId($adClientId)
+    {
+        $this->adClientId = $adClientId;
+    }
+
+    /**
+     * Get adClientId
+     *
+     * @return integer 
+     */
+    public function getAdClientId()
+    {
+        return $this->adClientId;
+    }
+
+    /**
+     * Set adOrgId
+     *
+     * @param integer $adOrgId
+     */
+    public function setAdOrgId($adOrgId)
+    {
+        $this->adOrgId = $adOrgId;
+    }
+
+    /**
+     * Get adOrgId
+     *
+     * @return integer 
+     */
+    public function getAdOrgId()
+    {
+        return $this->adOrgId;
     }
 
     /**
@@ -163,7 +175,7 @@ class AdUserRoles
     /**
      * Set createdby
      *
-     * @param decimal $createdby
+     * @param integer $createdby
      */
     public function setCreatedby($createdby)
     {
@@ -173,7 +185,7 @@ class AdUserRoles
     /**
      * Get createdby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getCreatedby()
     {
@@ -203,7 +215,7 @@ class AdUserRoles
     /**
      * Set updatedby
      *
-     * @param decimal $updatedby
+     * @param integer $updatedby
      */
     public function setUpdatedby($updatedby)
     {
@@ -213,90 +225,10 @@ class AdUserRoles
     /**
      * Get updatedby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getUpdatedby()
     {
         return $this->updatedby;
-    }
-
-    /**
-     * Set adClient
-     *
-     * @param AdClient $adClient
-     */
-    public function setAdClient(\AdClient $adClient)
-    {
-        $this->adClient = $adClient;
-    }
-
-    /**
-     * Get adClient
-     *
-     * @return AdClient 
-     */
-    public function getAdClient()
-    {
-        return $this->adClient;
-    }
-
-    /**
-     * Set adOrg
-     *
-     * @param AdOrg $adOrg
-     */
-    public function setAdOrg(\AdOrg $adOrg)
-    {
-        $this->adOrg = $adOrg;
-    }
-
-    /**
-     * Get adOrg
-     *
-     * @return AdOrg 
-     */
-    public function getAdOrg()
-    {
-        return $this->adOrg;
-    }
-
-    /**
-     * Set adRole
-     *
-     * @param AdRole $adRole
-     */
-    public function setAdRole(\AdRole $adRole)
-    {
-        $this->adRole = $adRole;
-    }
-
-    /**
-     * Get adRole
-     *
-     * @return AdRole 
-     */
-    public function getAdRole()
-    {
-        return $this->adRole;
-    }
-
-    /**
-     * Set adUser
-     *
-     * @param AdUser $adUser
-     */
-    public function setAdUser(\AdUser $adUser)
-    {
-        $this->adUser = $adUser;
-    }
-
-    /**
-     * Get adUser
-     *
-     * @return AdUser 
-     */
-    public function getAdUser()
-    {
-        return $this->adUser;
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace models;
 
 /**
@@ -12,19 +11,26 @@ namespace models;
 class AdClientinfo
 {
     /**
-     * @var decimal $adClientId
+     * @var integer $adClientinfoId
      *
-     * @Column(name="ad_client_id", type="decimal", nullable=false)
+     * @Column(name="ad_clientinfo_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="SEQUENCE")
-     * @SequenceGenerator(sequenceName="ad_clientinfo_ad_client_id_seq", allocationSize="1", initialValue="1")
+     * @SequenceGenerator(sequenceName="ad_clientinfo_ad_clientinfo_id_seq", allocationSize="1", initialValue="1")
+     */
+    private $adClientinfoId;
+
+    /**
+     * @var integer $adClientId
+     *
+     * @Column(name="ad_client_id", type="integer", nullable=false)
      */
     private $adClientId;
 
     /**
-     * @var decimal $adOrgId
+     * @var integer $adOrgId
      *
-     * @Column(name="ad_org_id", type="decimal", nullable=false)
+     * @Column(name="ad_org_id", type="integer", nullable=false)
      */
     private $adOrgId;
 
@@ -36,9 +42,9 @@ class AdClientinfo
     private $created;
 
     /**
-     * @var decimal $createdby
+     * @var integer $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=true)
+     * @Column(name="createdby", type="integer", nullable=true)
      */
     private $createdby;
 
@@ -50,63 +56,73 @@ class AdClientinfo
     private $updated;
 
     /**
-     * @var decimal $updatedby
+     * @var integer $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=true)
+     * @Column(name="updatedby", type="integer", nullable=true)
      */
     private $updatedby;
 
     /**
-     * @var decimal $cAcctschema1Id
+     * @var integer $cAcctschema1Id
      *
-     * @Column(name="c_acctschema1_id", type="decimal", nullable=true)
+     * @Column(name="c_acctschema1_id", type="integer", nullable=true)
      */
     private $cAcctschema1Id;
 
     /**
-     * @var decimal $cAcctschema2Id
+     * @var integer $cAcctschema2Id
      *
-     * @Column(name="c_acctschema2_id", type="decimal", nullable=true)
+     * @Column(name="c_acctschema2_id", type="integer", nullable=true)
      */
     private $cAcctschema2Id;
 
     /**
-     * @var decimal $cAcctschema3Id
+     * @var integer $cAcctschema3Id
      *
-     * @Column(name="c_acctschema3_id", type="decimal", nullable=true)
+     * @Column(name="c_acctschema3_id", type="integer", nullable=true)
      */
     private $cAcctschema3Id;
 
     /**
-     * @var decimal $mPricelistId
+     * @var integer $mPricelistId
      *
-     * @Column(name="m_pricelist_id", type="decimal", nullable=true)
+     * @Column(name="m_pricelist_id", type="integer", nullable=true)
      */
     private $mPricelistId;
 
     /**
-     * @var decimal $keeplogdays
+     * @var integer $keeplogdays
      *
-     * @Column(name="keeplogdays", type="decimal", nullable=false)
+     * @Column(name="keeplogdays", type="integer", nullable=false)
      */
     private $keeplogdays;
 
+
+
     /**
-     * @var AdClient
+     * Get adClientinfoId
      *
-     * @ManyToOne(targetEntity="AdClient")
-     * @JoinColumns({
-     *   @JoinColumn(name="ad_client_id", referencedColumnName="ad_client_id")
-     * })
+     * @return integer 
      */
-    private $adClient;
+    public function getAdClientinfoId()
+    {
+        return $this->adClientinfoId;
+    }
 
-
+    /**
+     * Set adClientId
+     *
+     * @param integer $adClientId
+     */
+    public function setAdClientId($adClientId)
+    {
+        $this->adClientId = $adClientId;
+    }
 
     /**
      * Get adClientId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdClientId()
     {
@@ -116,7 +132,7 @@ class AdClientinfo
     /**
      * Set adOrgId
      *
-     * @param decimal $adOrgId
+     * @param integer $adOrgId
      */
     public function setAdOrgId($adOrgId)
     {
@@ -126,7 +142,7 @@ class AdClientinfo
     /**
      * Get adOrgId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdOrgId()
     {
@@ -156,7 +172,7 @@ class AdClientinfo
     /**
      * Set createdby
      *
-     * @param decimal $createdby
+     * @param integer $createdby
      */
     public function setCreatedby($createdby)
     {
@@ -166,7 +182,7 @@ class AdClientinfo
     /**
      * Get createdby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getCreatedby()
     {
@@ -196,7 +212,7 @@ class AdClientinfo
     /**
      * Set updatedby
      *
-     * @param decimal $updatedby
+     * @param integer $updatedby
      */
     public function setUpdatedby($updatedby)
     {
@@ -206,7 +222,7 @@ class AdClientinfo
     /**
      * Get updatedby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getUpdatedby()
     {
@@ -216,7 +232,7 @@ class AdClientinfo
     /**
      * Set cAcctschema1Id
      *
-     * @param decimal $cAcctschema1Id
+     * @param integer $cAcctschema1Id
      */
     public function setCAcctschema1Id($cAcctschema1Id)
     {
@@ -226,7 +242,7 @@ class AdClientinfo
     /**
      * Get cAcctschema1Id
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getCAcctschema1Id()
     {
@@ -236,7 +252,7 @@ class AdClientinfo
     /**
      * Set cAcctschema2Id
      *
-     * @param decimal $cAcctschema2Id
+     * @param integer $cAcctschema2Id
      */
     public function setCAcctschema2Id($cAcctschema2Id)
     {
@@ -246,7 +262,7 @@ class AdClientinfo
     /**
      * Get cAcctschema2Id
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getCAcctschema2Id()
     {
@@ -256,7 +272,7 @@ class AdClientinfo
     /**
      * Set cAcctschema3Id
      *
-     * @param decimal $cAcctschema3Id
+     * @param integer $cAcctschema3Id
      */
     public function setCAcctschema3Id($cAcctschema3Id)
     {
@@ -266,7 +282,7 @@ class AdClientinfo
     /**
      * Get cAcctschema3Id
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getCAcctschema3Id()
     {
@@ -276,7 +292,7 @@ class AdClientinfo
     /**
      * Set mPricelistId
      *
-     * @param decimal $mPricelistId
+     * @param integer $mPricelistId
      */
     public function setMPricelistId($mPricelistId)
     {
@@ -286,7 +302,7 @@ class AdClientinfo
     /**
      * Get mPricelistId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getMPricelistId()
     {
@@ -296,7 +312,7 @@ class AdClientinfo
     /**
      * Set keeplogdays
      *
-     * @param decimal $keeplogdays
+     * @param integer $keeplogdays
      */
     public function setKeeplogdays($keeplogdays)
     {
@@ -306,30 +322,10 @@ class AdClientinfo
     /**
      * Get keeplogdays
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getKeeplogdays()
     {
         return $this->keeplogdays;
-    }
-
-    /**
-     * Set adClient
-     *
-     * @param AdClient $adClient
-     */
-    public function setAdClient(\AdClient $adClient)
-    {
-        $this->adClient = $adClient;
-    }
-
-    /**
-     * Get adClient
-     *
-     * @return AdClient 
-     */
-    public function getAdClient()
-    {
-        return $this->adClient;
     }
 }

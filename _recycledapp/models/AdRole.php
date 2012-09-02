@@ -11,14 +11,28 @@ namespace models;
 class AdRole
 {
     /**
-     * @var decimal $adRoleId
+     * @var integer $adRoleId
      *
-     * @Column(name="ad_role_id", type="decimal", nullable=false)
+     * @Column(name="ad_role_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="SEQUENCE")
      * @SequenceGenerator(sequenceName="ad_role_ad_role_id_seq", allocationSize="1", initialValue="1")
      */
     private $adRoleId;
+
+    /**
+     * @var integer $adClientId
+     *
+     * @Column(name="ad_client_id", type="integer", nullable=false)
+     */
+    private $adClientId;
+
+    /**
+     * @var integer $adOrgId
+     *
+     * @Column(name="ad_org_id", type="integer", nullable=false)
+     */
+    private $adOrgId;
 
     /**
      * @var date $created
@@ -28,9 +42,9 @@ class AdRole
     private $created;
 
     /**
-     * @var decimal $createdby
+     * @var integer $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=true)
+     * @Column(name="createdby", type="integer", nullable=true)
      */
     private $createdby;
 
@@ -49,9 +63,9 @@ class AdRole
     private $name;
 
     /**
-     * @var decimal $updatedby
+     * @var integer $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=true)
+     * @Column(name="updatedby", type="integer", nullable=true)
      */
     private $updatedby;
 
@@ -63,42 +77,62 @@ class AdRole
     private $description;
 
     /**
-     * @var decimal $adTreeMenuId
+     * @var integer $adTreeMenuId
      *
-     * @Column(name="ad_tree_menu_id", type="decimal", nullable=true)
+     * @Column(name="ad_tree_menu_id", type="integer", nullable=true)
      */
     private $adTreeMenuId;
-
-    /**
-     * @var AdClient
-     *
-     * @ManyToOne(targetEntity="AdClient")
-     * @JoinColumns({
-     *   @JoinColumn(name="ad_client_id", referencedColumnName="ad_client_id")
-     * })
-     */
-    private $adClient;
-
-    /**
-     * @var AdOrg
-     *
-     * @ManyToOne(targetEntity="AdOrg")
-     * @JoinColumns({
-     *   @JoinColumn(name="ad_org_id", referencedColumnName="ad_org_id")
-     * })
-     */
-    private $adOrg;
 
 
 
     /**
      * Get adRoleId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdRoleId()
     {
         return $this->adRoleId;
+    }
+
+    /**
+     * Set adClientId
+     *
+     * @param integer $adClientId
+     */
+    public function setAdClientId($adClientId)
+    {
+        $this->adClientId = $adClientId;
+    }
+
+    /**
+     * Get adClientId
+     *
+     * @return integer 
+     */
+    public function getAdClientId()
+    {
+        return $this->adClientId;
+    }
+
+    /**
+     * Set adOrgId
+     *
+     * @param integer $adOrgId
+     */
+    public function setAdOrgId($adOrgId)
+    {
+        $this->adOrgId = $adOrgId;
+    }
+
+    /**
+     * Get adOrgId
+     *
+     * @return integer 
+     */
+    public function getAdOrgId()
+    {
+        return $this->adOrgId;
     }
 
     /**
@@ -124,7 +158,7 @@ class AdRole
     /**
      * Set createdby
      *
-     * @param decimal $createdby
+     * @param integer $createdby
      */
     public function setCreatedby($createdby)
     {
@@ -134,7 +168,7 @@ class AdRole
     /**
      * Get createdby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getCreatedby()
     {
@@ -184,7 +218,7 @@ class AdRole
     /**
      * Set updatedby
      *
-     * @param decimal $updatedby
+     * @param integer $updatedby
      */
     public function setUpdatedby($updatedby)
     {
@@ -194,7 +228,7 @@ class AdRole
     /**
      * Get updatedby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getUpdatedby()
     {
@@ -224,7 +258,7 @@ class AdRole
     /**
      * Set adTreeMenuId
      *
-     * @param decimal $adTreeMenuId
+     * @param integer $adTreeMenuId
      */
     public function setAdTreeMenuId($adTreeMenuId)
     {
@@ -234,50 +268,10 @@ class AdRole
     /**
      * Get adTreeMenuId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdTreeMenuId()
     {
         return $this->adTreeMenuId;
-    }
-
-    /**
-     * Set adClient
-     *
-     * @param AdClient $adClient
-     */
-    public function setAdClient(\AdClient $adClient)
-    {
-        $this->adClient = $adClient;
-    }
-
-    /**
-     * Get adClient
-     *
-     * @return AdClient 
-     */
-    public function getAdClient()
-    {
-        return $this->adClient;
-    }
-
-    /**
-     * Set adOrg
-     *
-     * @param AdOrg $adOrg
-     */
-    public function setAdOrg(\AdOrg $adOrg)
-    {
-        $this->adOrg = $adOrg;
-    }
-
-    /**
-     * Get adOrg
-     *
-     * @return AdOrg 
-     */
-    public function getAdOrg()
-    {
-        return $this->adOrg;
     }
 }

@@ -11,9 +11,9 @@ namespace models;
 class AdClient
 {
     /**
-     * @var decimal $adClientId
+     * @var integer $adClientId
      *
-     * @Column(name="ad_client_id", type="decimal", nullable=false)
+     * @Column(name="ad_client_id", type="integer", nullable=false)
      * @Id
      * @GeneratedValue(strategy="SEQUENCE")
      * @SequenceGenerator(sequenceName="ad_client_ad_client_id_seq", allocationSize="1", initialValue="1")
@@ -21,9 +21,9 @@ class AdClient
     private $adClientId;
 
     /**
-     * @var decimal $adOrgId
+     * @var integer $adOrgId
      *
-     * @Column(name="ad_org_id", type="decimal", nullable=false)
+     * @Column(name="ad_org_id", type="integer", nullable=false)
      */
     private $adOrgId;
 
@@ -35,9 +35,9 @@ class AdClient
     private $created;
 
     /**
-     * @var decimal $createdby
+     * @var integer $createdby
      *
-     * @Column(name="createdby", type="decimal", nullable=true)
+     * @Column(name="createdby", type="integer", nullable=true)
      */
     private $createdby;
 
@@ -49,9 +49,9 @@ class AdClient
     private $updated;
 
     /**
-     * @var decimal $updatedby
+     * @var integer $updatedby
      *
-     * @Column(name="updatedby", type="decimal", nullable=true)
+     * @Column(name="updatedby", type="integer", nullable=true)
      */
     private $updatedby;
 
@@ -137,7 +137,7 @@ class AdClient
     /**
      * Get adClientId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdClientId()
     {
@@ -147,7 +147,7 @@ class AdClient
     /**
      * Set adOrgId
      *
-     * @param decimal $adOrgId
+     * @param integer $adOrgId
      */
     public function setAdOrgId($adOrgId)
     {
@@ -157,7 +157,7 @@ class AdClient
     /**
      * Get adOrgId
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getAdOrgId()
     {
@@ -187,7 +187,7 @@ class AdClient
     /**
      * Set createdby
      *
-     * @param decimal $createdby
+     * @param integer $createdby
      */
     public function setCreatedby($createdby)
     {
@@ -197,7 +197,7 @@ class AdClient
     /**
      * Get createdby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getCreatedby()
     {
@@ -227,7 +227,7 @@ class AdClient
     /**
      * Set updatedby
      *
-     * @param decimal $updatedby
+     * @param integer $updatedby
      */
     public function setUpdatedby($updatedby)
     {
@@ -237,7 +237,7 @@ class AdClient
     /**
      * Get updatedby
      *
-     * @return decimal 
+     * @return integer 
      */
     public function getUpdatedby()
     {
