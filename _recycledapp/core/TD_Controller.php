@@ -45,10 +45,90 @@ class TD_Controller extends MX_Controller {
     }
 }
 
+/** Esta clase permite crear controladores que verifiquen el dispositivo */
+class TD_Device_Controller extends TD_Controller {
+
+    /**
+     * @var Device_Storage
+     */
+    public $device_storage = null;
+
+    //Atributos que pueden ser utilizados para mostrar el link a la versión móvil o desktop
+    public $alternative_url = '';
+
+    /** Contruye el objeto con las funciones y determina el dispositivo */
+    public function  __construct()
+    {
+        parent::__construct();
+
+        //Determinar el controlador invocado
+        $this->load->helper('url');        
+        $module = $this->uri->segment(1);
+        
+        //Determinar el dispositivo y la preferencia del usuario
+        $this->device_storage = $this->load->library('device_storage');
+        $use_mobile = $this->device_storage->useMobile();
+
+        //Determinar el controlador destino
+        $change_destination = NULL;
+        if (strcasecmp($module, 'movil') == 0) { //Se solicito un modulo movil
+
+            //Determinar el modulo destino
+            $mobile_module = $this->uri->segment(2);
+
+            //Se evita que vaya a td/index
+            if (strcasecmp($mobile_module, 'index') == 0)
+                $mobile_module = '';
+
+            //Si no debe usar mobile, redirigirlo a la version desktop
+            if (!$use_mobile) {
+                //Si la preferencia es no usar movil entonces
+                $change_destination = base_url($mobile_module);
+            }
+
+        } else { //Se solicitó un módulo distinto a movil
+
+            if ($use_mobile) {
+                //Si la preferenca es usar movil entonces cambiar la direccion
+                $change_destination = base_url('movil/'.$module );
+            }
+        }
+
+        //Cargar la configuracion
+        $this->config->load('device'); //Cargar la configuracion
+        
+        //Determinar, los url alternativos para el cambio de version
+        $preference = $this->device_storage->retrieveDevicePreference();
+        $controller = 'restful/account/devicepreference';       
+        if ($preference == $this->config->item('DESKTOP_PREFERENCE')) {            
+            $this->alternative_url = base_url($controller.'?preference='.
+                    $this->config->item('MOBILE_PREFERENCE').'&url='. urlencode(current_url()) );
+        } else if ($preference == $this->config->item('MOBILE_PREFERENCE')) {
+            $this->alternative_url = base_url($controller.'?preference='.                    
+                    $this->config->item('DESKTOP_PREFERENCE').'&url='. urlencode(current_url()) );
+        } else {
+            //No tiene preferencia, entonces determinar la opuesta
+            $is_mobile = $this->device_storage->retrieveDeviceInfo()->is_mobile();
+            if ($is_mobile) {
+                $this->alternative_url = base_url($controller.'?preference='.                    
+                    $this->config->item('DESKTOP_PREFERENCE').'&url='. urlencode(current_url()) );
+            } else {
+                $this->alternative_url = base_url($controller.'?preference='.
+                    $this->config->item('MOBILE_PREFERENCE').'&url='. urlencode(current_url()) );
+            }
+        }
+
+        //Si se tiene que cambiar la direccion, hacerlo
+        if ($change_destination !== NULL) {
+            redirect($change_destination, 'refresh');
+        }
+    }
+
+}
 
 /** Esta clase permite crear controladores que verifiquen que el usuario
  * haya iniciado sesión  */
-class TD_Login_Controller extends TD_Controller {
+class TD_Login_Controller extends TD_Device_Controller {
 
     /**
      * @var models\User
@@ -139,3 +219,60 @@ class TD_Login_Controller extends TD_Controller {
 
 }
 
+
+/**
+ * Esta clase mantiene aquellos métodos y datos que corresponden a los controladores móviles
+ */
+class TD_Mobile_Controller extends TD_Login_Controller {
+
+    //Para reusar las varibles de jquery mobile
+    protected $data = array();
+
+    /** Constructor de la clase, carga las variables y css necesarios */
+    public function  __construct() {
+
+        //LLamar al constructor del padre
+        parent::__construct();
+
+        //Para evitar llamar varias veces a base_url  para los css y js se usa array_map
+        //Indicar los css para movil
+        $this->data['css'] = array_map('base_url',
+                array(                    
+                    'css/jquery.mobile.td.theme-1.1.1.min.css', //Se debe colocar para usar el tema generado
+                    'css/jquery.mobile.structure-1.1.1.min.css', //Estructura de jquery mobile                    
+                    'css/jquery.mobile.td.custom.css', //Configuraciones especiales para tudescuenton.com                    
+                ));
+
+        //Indicar los css para movil
+        $this->data['js'] = array_map('base_url',
+                array(
+                    'js/movil/jquery-1.7.1.min.js', //Incluir jquery libraries
+                    'js/movil/jquery.mobile.td.mobileinit.js', //Cuando se desee, se puede llamar a este inicializador de jquery mobile
+                    'js/movil/jquery.mobile.ios-orientationchange-fix.min.js', // Arregla un problema de orientación de i-os
+                    'js/movil/jquery.mobile-1.1.1.min.js',                     //Incluir jquery mobile                    
+                    'js/movil/jquery.mobile.td.custom.js' //Funcionalidades personalizadas de tudescuenton                    
+                )
+        );
+
+        //Cargar los mensajes informativos
+        $this->data['messages'] = array(
+            'notice' => array(),
+            'error' => array());
+
+        $data['image_url'] = 'http://localhost/static/';
+
+    }
+
+    /** Carga la vista de acuerdo al contenido especificado*/
+    protected function load_as_content($view) {
+
+        //Cargar las vistas
+        $this->load->view('movil/cabecera_html', $this->data);
+        $this->load->view('movil/cabecera_navbar', $this->data);
+        $this->load->view('movil/cabecera_mensajes', $this->data);
+        $this->load->view($view, $this->data);
+        $this->load->view('movil/fondo_html', $this->data);
+
+    }
+
+}

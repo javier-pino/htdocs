@@ -37,7 +37,7 @@ class Doctrine {
 		{
 			$cache = new \Doctrine\Common\Cache\ArrayCache;
 		}
-
+                
 		// Set some configuration options
 		$config = new Configuration;
 
@@ -68,7 +68,7 @@ class Doctrine {
 
 		// Database connection information
 		$connectionOptions = array(
-			'driver'		=> $db[$active_group]['doctrine_driver'],
+			'driver'		=> 'pdo_mysql',
 			'user'			=> $db[$active_group]['username'],
 			'password'		=> $db[$active_group]['password'],
 			'host'			=> $db[$active_group]['hostname'],

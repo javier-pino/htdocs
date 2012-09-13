@@ -10,35 +10,57 @@
  */
 class Account extends REST_Controller {
 
-    /**
-     * Realiza el inicio de sesión del usuario, se conecta al buho y realiza
-     * las operaciones necesarias
+    
+    /** 
+     * Se debe duplicar el método login posst, para que se haga en login get
+     * Por esto se crea este método para evitar repetir funciones
      */
-    function login_post()
-    {
-        //Solicitar los parámetros
-        $user_id = $this->input->post('email');
-        $password = $this->input->post('password');
-
+    function login_process ($email, $password) {
+        
         //Sino está logueado, hacerlo con usuario y contraseña
         $this->load->model('buho/buho');
-        $login_result = $this->buho->login($user_id, $password);
+        $login_result = $this->buho->login($email, $password);
         
         //Se da una respuesta como servicio restful
         $response = array();
         $response['status'] = $login_result->getSuccess();
         $response['message'] = $login_result->getMessage();
         $response['user'] = $login_result->getUser();
-        $this->response($response);
-        
+                
+        $this->response($response);        
+    }
+    
+    /**
+     * Realiza el inicio de sesión del usuario, se conecta al buho y realiza
+     * las operaciones necesarias
+     */
+    function login_get()
+    {                 
+        //Solicitar los parámetros
+        $email = $this->input->get('email');
+        $password = $this->input->get('password');
+        $this->login_process($email, $password);
     }
 
+    /**
+     * Realiza el inicio de sesión del usuario, se conecta al buho y realiza
+     * las operaciones necesarias
+     */
+    function login_post()
+    {                 
+        //Solicitar los parámetros
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $this->login_process($email, $password);
+    }
+    
         /**
      * Realiza el inicio de sesión del usuario, se conecta al buho y realiza
      * las operaciones necesarias
      */
     function register_post()
     {
+
         //Crear arreglo de parámetros
         $u = array();
         $u['password'] = $this->input->post('password');
@@ -46,6 +68,20 @@ class Account extends REST_Controller {
         $u['email'] = $this->input->post('email');
         $u['city_id'] = abs(intval($this->input->post('city_id')));
         $u['city'] = $this->input->post('city') != NULL ? strval($this->input->post('city')) : '';
+        
+        //Si no especificó la ciudad
+        if ($u['city'] == '') {
+            $city_input = $this->input->post('city_input');
+            $city_select = $this->input->post('city_select');                        
+            if ($u['city_id'] == '1') {
+                //Hace falta, buscar el municipio
+                $municipio = $this->em->find('models\Municipio', $city_select);                
+                $u['city'] =  $municipio->getNombre();
+            } else {
+                $u['city'] =  $city_input;
+            }
+        }        
+
         $u['gender'] = $this->input->post('gender');
         $u['mobile'] = $this->input->post('mobile');
         $u['identifier'] = $this->input->post('identifier');
@@ -65,7 +101,7 @@ class Account extends REST_Controller {
         $u['username'] = '';
         $u['terminos'] = $this->input->post('terminos') == NULL ? 'N' : 'Y';
         $u['subscribe'] = $this->input->post('subscribe') == NULL ? 'N' : 'Y';
-
+        
         //Sino está logueado, hacerlo con usuario y contraseña
         $this->load->model('buho/buho');
         $login_result = $this->buho->register($u);
@@ -75,6 +111,8 @@ class Account extends REST_Controller {
         $response['status'] = $login_result->getSuccess();
         $response['message'] = $login_result->getMessage();
         $response['user'] = $login_result->getUser();
+                
+        
         $this->response($response);
         
     }
@@ -86,11 +124,9 @@ class Account extends REST_Controller {
         $response = array();
         $response['status'] = TRUE;
         $response['message'] = 'Logout exitoso';
-        $response['user'] = NULL;
+        $response['user'] = NULL;                
         $this->response($response);
-
     }
-
 
     /** Modifica la preferencia de dispositivo */
     function devicepreference_get()
@@ -114,8 +150,29 @@ class Account extends REST_Controller {
         //Si se especificó directorio de destino biz, sino ir a index
         $this->load->helper('url');
 
-        //Redirigir a la página inicial
+        //Redirigir a la página inicial        
         redirect($device_go_back);
+    }
+    
+    /** Este servicio entrega todas las ciudades disponibles */
+    function ciudades_municipios_get() {
+        
+        //Antes de procesar, se deben buscar las ciudades y municipios
+        $this->load->model('td/category');
+        $this->load->model('td/municipio');
+        
+        //Procesar
+        $all_cities = $this->category->get_all_cities();                
+        foreach ($all_cities as $city) {
+            $result['ciudades'][$city->getId()] = $city->getName();
+        }
+
+        //Obtener los municipios               
+        $all_municipios = $this->municipio->get_municipios_caracas();        
+        foreach ($all_municipios as $mun) {
+            $result['municipios'][$mun->getIdmunicipio()] = htmlentities($mun->getNombre());
+        }        
+        $this->response($result);        
     }
     
 }

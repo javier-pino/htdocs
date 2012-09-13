@@ -46,13 +46,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'cadena';
-$db['default']['password'] = 'suministros';
-$db['default']['database'] = 'cadena';
-$db['default']['dbdriver'] = 'postgre';
-$db['default']['doctrine_driver'] = 'pdo_pgsql';
-$db['default']['port'] = 5432;
+$db['default']['hostname'] = 'mytudescuentonnew.cjqilh8qt90d.us-east-1.rds.amazonaws.com';
+$db['default']['username'] = 'tudescuenton';
+$db['default']['password'] = 'NewbdtdS3';
+$db['default']['database'] = 'neo_eldescuenton';
+$db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
@@ -63,6 +61,23 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
+
+$db['test']['hostname'] = 'localhost';
+$db['test']['username'] = 'root';
+$db['test']['password'] = '';
+$db['test']['database'] = 'neo_eldescuenton';
+$db['test']['dbdriver'] = 'mysql';
+$db['test']['dbprefix'] = '';
+$db['test']['pconnect'] = TRUE;
+$db['test']['db_debug'] = TRUE;
+$db['test']['cache_on'] = FALSE;
+$db['test']['cachedir'] = '';
+$db['test']['char_set'] = 'utf8';
+$db['test']['dbcollat'] = 'utf8_general_ci';
+$db['test']['swap_pre'] = '';
+$db['test']['autoinit'] = TRUE;
+$db['test']['stricton'] = FALSE;
+
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

@@ -2,8 +2,6 @@
 
 define('APPPATH', dirname(__FILE__) . '/');
 define('BASEPATH', APPPATH . '/../_trashsys/');
-define('ENVIRONMENT', 'development');
-
 chdir(APPPATH);
 
 require_once 'libraries/Doctrine/Common/ClassLoader.php';

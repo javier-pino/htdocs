@@ -139,6 +139,8 @@ abstract class REST_Controller extends TD_Controller
 	public function __construct()
 	{
 		parent::__construct();
+                
+                header("Access-Control-Allow-Origin: *");
 
 		$this->_zlib_oc = @ini_get('zlib.output_compression');
 
